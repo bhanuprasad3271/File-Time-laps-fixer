@@ -1,6 +1,5 @@
-# DateFixer (Offline Android App — Java + XML + HTML + CSS + Python)
-
-100% offline Android file & media date manager with a **ZArchiver-style dark file explorer** and **zero Kotlin**.
+# DateFixer (Offline Android App )
+100% offline Android file & media date manager with a **ZArchiver-style dark file explorer**.
 
 ## Screenshots
 
