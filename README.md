@@ -1,6 +1,12 @@
-# Files Time-lapse Fixer
+# DateFixer (Offline Android App — Java + XML + HTML + CSS + Python)
 
 100% offline Android file & media date manager with a **ZArchiver-style dark file explorer** and **zero Kotlin**.
+
+## Screenshots
+
+| File Explorer | Permission to Modify Types | Bundle Date & Folder Warning | Update Complete & Undo |
+| :---: | :---: | :---: | :---: |
+| ![File Explorer](screenshots/explorer.jpg) | ![Permission to Modify Types](screenshots/permission-types.jpg) | ![Bundle Date Warning](screenshots/bundle-warning.jpg) | ![Update Complete](screenshots/update-complete.jpg) |
 
 ## Tech Stack
 - **Java + XML** (`MainActivity.java`, `activity_main.xml`): Android host, `WebView` + `@JavascriptInterface` bridge, multi-user storage permissions (`MANAGE_EXTERNAL_STORAGE`), and `MediaScannerConnection` gallery refresh.
