@@ -1,4 +1,4 @@
-# DateFixer (Offline Android App — Java + XML + HTML + CSS + Python)
+# Files Time-lapse Fixer
 
 100% offline Android file & media date manager with a **ZArchiver-style dark file explorer** and **zero Kotlin**.
 
