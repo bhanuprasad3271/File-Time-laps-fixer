@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>DateFixer</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <button class="topbar-btn" id="btnBack">←</button>
+  <div class="path-box">
+    <div class="folder-title" id="topTitle">0</div>
+    <div class="folder-sub" id="topSub">/storage/emulated/0</div>
+  </div>
+  <button class="action-pill" id="btnSelectAll">Select All</button>
+  <button class="action-pill" id="btnSubfolders">Sub: ON</button>
+</div>
+
+<div class="banner" id="banner"></div>
+
+<!-- Screen 1: ZArchiver Explorer -->
+<div id="screenExplorer" class="panel active" style="padding:0;">
+  <div style="background:var(--card); border-bottom:1px solid var(--border); padding:8px 14px; display:flex; flex-direction:column; gap:6px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--sub);">
+      <span>Allow 6-digit YYMMDD (e.g. 240514_153022)</span>
+      <input type="checkbox" id="chkShortYear">
+    </div>
+    <input type="text" id="txtCustomRegex" placeholder="Optional custom regex: (?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2})" style="background:#12141A; color:var(--text); border:1px solid var(--border); border-radius:6px; padding:6px 8px; font-size:12px; font-family:monospace;">
+  </div>
+  <div id="explorerList"></div>
+  <div style="position:fixed; right:16px; bottom:18px; display:flex; gap:8px; z-index:20;">
+    <button class="fab" id="btnBundleDate" style="position:static; display:none; background:var(--topbar); border:1px solid var(--accent);">Set Date (0)</button>
+    <button class="fab" id="btnModifySelected" style="position:static; display:none;">Auto-Fix (0)</button>
+  </div>
+</div>
+
+<!-- Screen 2: Type Permission Gate -->
+<div id="screenTypes" class="panel">
+  <div style="color:var(--sub); font-size:13px;" id="typesSummary"></div>
+  <div id="typesList"></div>
+  <button class="btn-primary" id="btnApproveTypes">Allow Selected Types &amp; Preview</button>
+</div>
+
+<!-- Screen 3: Dry-Run Preview -->
+<div id="screenPreview" class="panel">
+  <div id="previewList"></div>
+  <button class="btn-primary" id="btnApply">Apply Changes</button>
+</div>
+
+<!-- Screen 3b: Bundle Date Overwrite -->
+<div id="screenBundle" class="panel">
+  <div style="color:var(--sub); font-size:13px;" id="bundleSummary"></div>
+  <div id="bundleFolderWarnBox" class="card" style="display:none; border-color:var(--warn);">
+    <div class="warn" id="bundleFolderWarnText" style="font-size:13px; font-weight:600; margin-bottom:8px;"></div>
+    <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text);">
+      <input type="checkbox" id="chkConfirmFolderDate">
+      <span>Confirm changing folder date/time</span>
+    </label>
+  </div>
+  <label class="field">New Date &amp; Time for All Selected (YYYY-MM-DD HH:MM:SS) <input type="text" id="bundleDateInput" placeholder="2025-08-10 14:30:00"></label>
+  <div id="bundleError" class="warn" style="font-size:13px;"></div>
+  <button class="btn-primary" id="btnApplyBundle">Overwrite Date on All Selected</button>
+</div>
+
+<!-- Screen 4: Edit All File Details -->
+<div id="screenEdit" class="panel">
+  <label class="field">Filename <input type="text" id="edName"></label>
+  <label class="field">Date &amp; Time (YYYY-MM-DD HH:MM:SS) <input type="text" id="edDateTime"></label>
+  <div id="jpegFields" style="display:flex; flex-direction:column; gap:10px;">
+    <label class="field">Title / Description <input type="text" id="edDesc"></label>
+    <label class="field">Artist / Author <input type="text" id="edArtist"></label>
+    <label class="field">Camera Make <input type="text" id="edMake"></label>
+    <label class="field">Camera Model <input type="text" id="edModel"></label>
+    <label class="field">GPS Latitude <input type="text" id="edLat"></label>
+    <label class="field">GPS Longitude <input type="text" id="edLon"></label>
+    <label class="field">User Comment <input type="text" id="edComment"></label>
+  </div>
+  <div id="edError" class="warn" style="font-size:13px;"></div>
+  <button class="btn-primary" id="btnSaveDetails">Save All File Details</button>
+</div>
+
+<!-- Screen 5: Results & Undo -->
+<div id="screenResults" class="panel">
+  <div class="card"><strong class="ok" id="resSummary"></strong></div>
+  <div id="resLogs" class="card" style="font-size:12px; line-height:1.6;"></div>
+  <button class="btn-sec" id="btnUndo" style="color:var(--warn);">Undo Last Run</button>
+  <button class="btn-primary" id="btnDone">Back to Explorer</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
